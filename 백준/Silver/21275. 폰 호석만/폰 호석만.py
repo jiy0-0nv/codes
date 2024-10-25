@@ -17,9 +17,7 @@ def c2n(c):
     else:
         return c - 87
 
-s = c2n(max(max(a), max(b)))
-
-for i in range(c2n(max(a)), 36):
+for i in range(max(2, c2n(max(a)) + 1), 37):
     ax[i] = c2n(a[len(a) - 1])
     m = i
     for j in range(1, len(a)):
@@ -33,7 +31,7 @@ for i in range(c2n(max(a)), 36):
     ad[ax[i]] = i
     ast.add(ax[i])
 
-for i in range(c2n(max(b)), 36):
+for i in range(max(2, c2n(max(b)) + 1), 37):
     bx[i] = c2n(b[len(b) - 1])
     m = i
     for j in range(1, len(b)):
