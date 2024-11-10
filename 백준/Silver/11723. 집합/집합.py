@@ -1,29 +1,24 @@
 import sys
 input = sys.stdin.readline
-s = set()
-al = [i + 1 for i in range(20)]
 
+s = 0
+n = 2 ** 20 - 1
 m = int(input())
+
 for _ in range(m):
     t = input().strip()
     if t == 'all':
-        s = set(al)
+        s = n
     elif t == 'empty':
-        s = set()
+        s = 0
     else:
         t, x = t.split()
         x = int(x)
         if t == 'add':
-            s.add(x)
+            s |= (1 << (x - 1))
         elif t == 'remove':
-            s.discard(x)
+            s &= ((1 << (x - 1)) ^ n)
         elif t == 'check':
-            if x in s:
-                print(1)
-            else:
-                print(0)
+            print((s >> (x - 1)) & 1)
         elif t == 'toggle':
-            if x in s:
-                s.remove(x)
-            else:
-                s.add(x)
+            s ^= (1 << (x - 1))
