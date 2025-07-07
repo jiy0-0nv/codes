@@ -1,6 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int gcd(int a, int b){
+    if (b==0) return a;
+    return gcd(b, a%b);
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -9,16 +14,9 @@ int main()
     int T, A, B;
     cin>>T;
 
-    for (int i=0; i<T; ++i){
+    while(T--){
         cin>>A>>B;
-        if (A>B) swap(A, B);
-        for (int j=1;j<=A;++j){
-            if ((B*j)%A==0){
-                B *= j;
-                break;
-            }
-        }
-        cout<<B<<"\n";
+        cout<<(A*B)/gcd(A,B)<<"\n";
     }
 
     return 0;
