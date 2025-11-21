@@ -2,7 +2,8 @@
 using namespace std;
 
 int n;
-int ans = 0;
+int mxnod = 1;
+int mxdst = 0;
 
 // 인접 리스트
 vector<vector<pair<int, int>>> tree;
@@ -10,9 +11,9 @@ vector<vector<pair<int, int>>> tree;
 bool vst[10001];
 
 void dfs(int node, int d) {
-    if (d > 0 && tree[node].size() == 1) {
-        ans = max(ans, d);
-        return;
+    if (mxdst < d) {
+        mxdst = d;
+        mxnod = node;
     }
 
     for (auto e : tree[node]) {
@@ -39,15 +40,15 @@ int main()
         tree[c].push_back({p, d});
     }
 
-    for (int i = 1; i <= n; i++) {
-        if (tree[i].size() == 1) {
-            fill(vst, vst+(n+1), false);
-            vst[i] = true;
-            dfs(i, 0);
-        }
-    }
+    vst[1] = true;
+    dfs(1, 0);
 
-    cout << ans;
+    fill(vst, vst+(n+1), false);
+
+    vst[mxnod] = true;
+    dfs(mxnod, 0);
+
+    cout << mxdst;
 
     return 0;
 }
