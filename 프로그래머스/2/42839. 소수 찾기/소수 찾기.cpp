@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 using namespace std;
 
@@ -36,13 +37,15 @@ int solution(string numbers) {
     
     fill(np, np+10000000, false);
     for (int i=2; i<5000000; i++) {
-        if (np[i]==false) {
+        if (!np[i]) {
             if (canMake(i)) answer++;
             for (int j=i; j<10000000; j+=i) {
                 np[j] = true;
             }
         }
     }
+    for (int i=5000000; i<10000000; i++)
+        if (!np[i] && canMake(i)) answer++;
     
     return answer;
 }
