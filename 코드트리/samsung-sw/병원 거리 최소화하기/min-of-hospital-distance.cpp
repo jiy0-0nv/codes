@@ -6,7 +6,7 @@ using namespace std;
 const int INF = 1e9;
 
 int N, M;
-int board[51][51];
+// int board[51][51];
 
 vector<pair<int, int> > hos;
 vector<pair<int, int> > per;
@@ -49,9 +49,10 @@ int main() {
 
     for (int r = 0; r < N; r++) {
         for (int c = 0; c < N; c++) {
-            cin >> board[r][c];
-            if (board[r][c] == 1) per.push_back({r, c});
-            else if (board[r][c] == 2) hos.push_back({r, c});
+            int t;
+            cin >> t;
+            if (t == 1) per.push_back({r, c});
+            else if (t == 2) hos.push_back({r, c});
         }
     }
 
